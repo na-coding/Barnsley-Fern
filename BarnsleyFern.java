@@ -24,7 +24,10 @@ public class BarnsleyFern extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2D = (Graphics2D)g;
+//		g2D.translate(683, 384);
+		g2D.translate(683,0);
 		g2D.setStroke(new BasicStroke(10));
+		
 		for (Point p : points) {
 			g2D.drawLine(p.x, p.y, p.x, p.y);
 		}

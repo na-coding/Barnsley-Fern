@@ -43,6 +43,7 @@ public class MainFrame extends JFrame{
 		
 		setBounds(posx, posy, width, height);
 		
+		System.out.println("Width: " + width  + " Height: " + height);
 //		centerx = width/2;
 //		centery = height/2;
 		centerx= 0;
@@ -60,24 +61,24 @@ public class MainFrame extends JFrame{
 		currenty = centery;
 		
 		Timer timer = new Timer(true);
-		timer.schedule(new TimerTask() {
-			
-			@Override
-			public void run() {
-				double rand = Math.random();
-				System.out.println("Rand: " + rand + ", X: " + currentx + ", Y: " + currenty);
-				
-				int toApply = 0;
-				if (rand == 0.99) toApply = 1;
-				else if (rand >= 0.92) toApply = 2;
-				else if (rand >= 0.85) toApply = 3;
-				else toApply = 4;
-				
-				updatePosition(currentx, currenty, toApply);
-				fern.addPoint(new Point(currentx, currenty));
-				fern.repaint();
-			}
-		}, 100, 100);
+//		timer.schedule(new TimerTask() {
+//			
+//			@Override
+//			public void run() {
+//				double rand = Math.random();
+//				System.out.println("Rand: " + rand + ", X: " + currentx + ", Y: " + currenty);
+//				
+//				int toApply = 0;
+//				if (rand == 0.99) toApply = 1;
+//				else if (rand >= 0.92) toApply = 2;
+//				else if (rand >= 0.85) toApply = 3;
+//				else toApply = 4;
+//				
+//				updatePosition(currentx, currenty, toApply);
+//				fern.addPoint(new Point(currentx, currenty));
+//				fern.repaint();
+//			}
+//		}, 100, 100);
 	}
 	
 	private void updatePosition(int x, int y, int algo) {
