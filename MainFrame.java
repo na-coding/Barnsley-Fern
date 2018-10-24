@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.geom.Point2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,8 +15,8 @@ public class MainFrame extends JFrame{
 	private BarnsleyFern fern;
 	private int centerx;
 	private int centery;
-	private int currentx;
-	private int currenty;
+	private double currentx;
+	private double currenty;
 
 	public static void main(String[] args){
 		try{
@@ -44,8 +45,6 @@ public class MainFrame extends JFrame{
 		setBounds(posx, posy, width, height);
 		
 		System.out.println("Width: " + width  + " Height: " + height);
-//		centerx = width/2;
-//		centery = height/2;
 		centerx= 0;
 		centery = 0;
 		
@@ -61,47 +60,68 @@ public class MainFrame extends JFrame{
 		currenty = centery;
 		
 		Timer timer = new Timer(true);
-//		timer.schedule(new TimerTask() {
-//			
-//			@Override
-//			public void run() {
-//				double rand = Math.random();
-//				System.out.println("Rand: " + rand + ", X: " + currentx + ", Y: " + currenty);
-//				
-//				int toApply = 0;
-//				if (rand == 0.99) toApply = 1;
-//				else if (rand >= 0.92) toApply = 2;
-//				else if (rand >= 0.85) toApply = 3;
-//				else toApply = 4;
-//				
-//				updatePosition(currentx, currenty, toApply);
-//				fern.addPoint(new Point(currentx, currenty));
-//				fern.repaint();
-//			}
-//		}, 100, 100);
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				double rand = Math.random();
+				
+				
+				int toApply = 0;
+				if (rand == 0.99) toApply = 1;
+				else if (rand >= 0.92) toApply = 2;
+				else if (rand >= 0.85) toApply = 3;
+				else toApply = 4;
+				
+				
+				updatePosition(currentx, currenty, toApply);
+				fern.addPoint(new Point2D.Double(currentx, currenty));
+				
+				System.out.println("Rand: " + rand + ", X: " + currentx + ", Y: " + currenty);
+				fern.repaint();
+			}
+		}, 100, 100);
 	}
 	
-	private void updatePosition(int x, int y, int algo) {
+	private void updatePosition(double x, double y, int algo) {
 		switch(algo) {
+//		case 1:
+//			currentx = centerx;
+//			currenty = (int)(0.16 * y);
+//			break;
+//		case 2:
+//			currentx = (int)((-0.15 * x) + (0.28 * y));
+//			currenty = (int)((0.26 * x) + (0.24 * y) + 1);
+//			break;
+//		case 3:
+//			currentx = (int)((0.2 * x) - (0.26 * y));
+//			currenty = (int)((0.23 * x) + (0.22 * y) + 2);
+//			break;
+//		case 4:
+//			currentx = (int)((0.85 * x) + (0.04 * y));
+//			currenty = (int)((-0.04 * x) + (0.85 * y) + 2);
+//			break;
 		case 1:
 			currentx = centerx;
-			currenty = (int)(0.16 * y);
+			currenty = (0.16 * y);
 			break;
 		case 2:
-			currentx = (int)((-0.15 * x) + (0.28 * y));
-			currenty = (int)((0.26 * x) + (0.24 * y) + 1);
+			currentx = ((-0.15 * x) + (0.28 * y));
+			currenty = ((0.26 * x) + (0.24 * y) + 0.44);
 			break;
 		case 3:
-			currentx = (int)((0.2 * x) - (0.26 * y));
-			currenty = (int)((0.23 * x) + (0.22 * y) + 2);
+			currentx = ((0.2 * x) - (0.26 * y));
+			currenty = ((0.23 * x) + (0.22 * y) + 1.6);
 			break;
 		case 4:
-			currentx = (int)((0.85 * x) + (0.04 * y));
-			currenty = (int)((-0.04 * x) + (0.85 * y) + 2);
+			currentx = ((0.85 * x) + (0.04 * y));
+			currenty = ((-0.04 * x) + (0.85 * y) + 1.6);
 			break;
 		default:
 			System.out.println("No algo");
-				
 		}
+		
+		currentx *= 2;
+		currenty *= 2;
 	}
 }
