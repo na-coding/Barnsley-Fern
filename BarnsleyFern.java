@@ -1,4 +1,5 @@
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
@@ -25,13 +26,17 @@ public class BarnsleyFern extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2D = (Graphics2D)g;
-//		g2D.translate(683, 384);
-		g2D.translate(getWidth() / 2,getHeight() / 2);
-		g2D.setStroke(new BasicStroke(5));
-		
+		//g2D.scale(1, 1);
+		//g2D.translate(getWidth() / 2,getHeight() / 2);
+		g2D.setStroke(new BasicStroke(4));
+		g2D.setColor(Color.green);
 		Line2D.Double line;
 		for (Point2D.Double p : points) {
-			line = new Line2D.Double(p.getX(), p.getY(), p.getX(), p.getY());
+			double x = Math.round(getWidth() / 2 + p.getX() * getWidth() / 11);
+			double y = Math.round(getHeight() - p.getY() * getHeight() / 11);
+			
+			
+			line = new Line2D.Double(x, y, x, y);
 			g2D.draw(line);
 		}
 	}

@@ -72,35 +72,18 @@ public class MainFrame extends JFrame{
 				else if (rand >= 0.92) toApply = 2;
 				else if (rand >= 0.85) toApply = 3;
 				else toApply = 4;
-				
-				
+
 				updatePosition(currentx, currenty, toApply);
 				fern.addPoint(new Point2D.Double(currentx, currenty));
 				
 				System.out.println("Rand: " + rand + ", X: " + currentx + ", Y: " + currenty);
 				fern.repaint();
 			}
-		}, 100, 100);
+		}, 10, 10);
 	}
 	
 	private void updatePosition(double x, double y, int algo) {
 		switch(algo) {
-//		case 1:
-//			currentx = centerx;
-//			currenty = (int)(0.16 * y);
-//			break;
-//		case 2:
-//			currentx = (int)((-0.15 * x) + (0.28 * y));
-//			currenty = (int)((0.26 * x) + (0.24 * y) + 1);
-//			break;
-//		case 3:
-//			currentx = (int)((0.2 * x) - (0.26 * y));
-//			currenty = (int)((0.23 * x) + (0.22 * y) + 2);
-//			break;
-//		case 4:
-//			currentx = (int)((0.85 * x) + (0.04 * y));
-//			currenty = (int)((-0.04 * x) + (0.85 * y) + 2);
-//			break;
 		case 1:
 			currentx = centerx;
 			currenty = (0.16 * y);
@@ -120,8 +103,5 @@ public class MainFrame extends JFrame{
 		default:
 			System.out.println("No algo");
 		}
-		
-		currentx *= 2;
-		currenty *= 2;
 	}
 }
